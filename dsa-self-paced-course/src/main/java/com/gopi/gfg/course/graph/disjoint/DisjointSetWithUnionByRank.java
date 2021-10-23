@@ -1,16 +1,15 @@
 /**
  * Created by gopinath_mb on Jul 23, 2021
  */
-package com.gopi.gfg.course.tree.disjoint;
-
-import static java.lang.System.out;
+package com.gopi.gfg.course.graph.disjoint;
 
 /**
  * @author gopinath_mb
  */
-public class DisjointSet {
+public class DisjointSetWithUnionByRank {
 
   static int parent[];
+  static int ranks[];
 
   static void initialize() {
     for(int i = 0; i < parent.length; i++) {
@@ -33,28 +32,34 @@ public class DisjointSet {
     if (x_rep == y_rep)
       return;
 
-    parent[y_rep] = x_rep;
+    if (ranks[x_rep] < ranks[y_rep])
+      parent[x_rep] = y_rep;
+
+    else if (ranks[y_rep] < ranks[x_rep])
+      parent[y_rep] = x_rep;
+
+    else {
+      parent[y_rep] = x_rep;
+      ranks[x_rep]++;
+    }
+
   }
 
   public static void main(String[] args) {
 
     int n = 5;
 
-    parent = new int[n];
+    parent = new int[5];
+    ranks = new int[5];
 
     initialize();
 
-    union(1, 2);
-    out.println(find(2));
+    union(3, 4);
     union(2, 3);
-    out.println(find(3));
-    union(4, 3);
-    out.println(find(4));
+    union(1, 2);
+    union(0, 1);
 
-    out.println(find(2));
-    out.println(find(3));
-
-    out.println(find(4));
-    out.println(find(0));
+    System.out.println(parent[3]);
+    System.out.println(ranks[3]);
   }
 }

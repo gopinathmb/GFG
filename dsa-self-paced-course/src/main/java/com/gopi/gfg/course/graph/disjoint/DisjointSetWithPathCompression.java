@@ -1,7 +1,7 @@
 /**
  * Created by gopinath_mb on Jul 23, 2021
  */
-package com.gopi.gfg.course.tree.disjoint;
+package com.gopi.gfg.course.graph.disjoint;
 
 /**
  * @author gopinath_mb
