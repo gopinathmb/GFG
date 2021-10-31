@@ -36,16 +36,16 @@ public class DisjointSetTheBest {
 
   // The union function with union by rank
   public void union(int x, int y) {
-    int rootX = find(x);
+    int parentX = find(x);
     int rootY = find(y);
-    if (rootX != rootY) {
-      if (rank[rootX] > rank[rootY]) {
-        parent[rootY] = rootX;
-      } else if (rank[rootX] < rank[rootY]) {
-        parent[rootX] = rootY;
+    if (parentX != rootY) {
+      if (rank[parentX] > rank[rootY]) {
+        parent[rootY] = parentX;
+      } else if (rank[parentX] < rank[rootY]) {
+        parent[parentX] = rootY;
       } else {
-        parent[rootY] = rootX;
-        rank[rootX] += 1;
+        parent[rootY] = parentX;
+        rank[parentX] += 1;
       }
     }
   }
